@@ -12,6 +12,10 @@ If you're looking for an x86_64 image or don't need GPU support, I recommend che
 | `WHISPER_BEAM` | Number of candidates to consider simultaneously during transcription. |
 | `WHISPER_LANG` | Language that you will speak to the add-on. |
 
+## Deployment
+
+Download `docker-compose.yml`, change the environment variables as needed, and start it with `docker compose up -d`.
+
 ## Development
 
 ```shell
