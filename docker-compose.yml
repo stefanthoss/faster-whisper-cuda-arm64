@@ -1,9 +1,6 @@
 services:
   faster-whisper-cuda-arm64:
-    platform: linux/arm64/v8
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/stefanthoss/faster-whisper-cuda-arm64:latest
     container_name: faster-whisper-cuda-arm64
     restart: unless-stopped
     ports:
