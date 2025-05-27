@@ -1,7 +1,6 @@
-FROM nvidia/cuda:12.6.0-cudnn-devel-ubuntu24.04
+FROM nvidia/cuda:12.6.0-cudnn-devel-ubuntu24.04 AS builder
 
 ARG CTRANSLATE2_VERSION=4.6.0
-ARG WHISPER_VERSION=2.4.0
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -27,10 +26,24 @@ RUN cd CTranslate2 \
 
 RUN cd CTranslate2/python \
     && python3 -m pip install --no-cache-dir --break-system-packages -r install_requirements.txt \
-    && python3 setup.py bdist_wheel \
-    && python3 -m pip install --no-cache-dir --break-system-packages \
-        dist/*.whl \
-        "wyoming-faster-whisper @ https://github.com/rhasspy/wyoming-faster-whisper/archive/refs/tags/v${WHISPER_VERSION}.tar.gz"
+    && python3 setup.py bdist_wheel
+
+FROM nvidia/cuda:12.6.0-cudnn-runtime-ubuntu24.04
+
+ARG WHISPER_VERSION=2.4.0
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /usr/local/lib/libctranslate* /usr/local/lib/
+
+COPY --from=builder /app/CTranslate2/python/dist/*.whl /wheels/
+
+RUN python3 -m pip install --no-cache-dir --break-system-packages \
+    /wheels/*.whl \
+    "wyoming-faster-whisper @ https://github.com/rhasspy/wyoming-faster-whisper/archive/refs/tags/v${WHISPER_VERSION}.tar.gz"
 
 COPY run.sh /
 
