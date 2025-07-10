@@ -30,7 +30,7 @@ RUN cd CTranslate2/python \
 
 FROM nvidia/cuda:12.6.0-cudnn-runtime-ubuntu24.04
 
-ARG WHISPER_VERSION=2.4.0
+ARG WHISPER_VERSION=2.5.0
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
