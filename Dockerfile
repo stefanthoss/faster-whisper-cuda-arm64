@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.6.0-cudnn-devel-ubuntu24.04 AS builder
+FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu24.04 AS builder
 
 ARG CTRANSLATE2_VERSION=4.6.0
 
@@ -28,9 +28,9 @@ RUN cd CTranslate2/python \
     && python3 -m pip install --no-cache-dir --break-system-packages -r install_requirements.txt \
     && python3 setup.py bdist_wheel
 
-FROM nvidia/cuda:12.6.0-cudnn-runtime-ubuntu24.04
+FROM nvidia/cuda:12.8.1-cudnn-runtime-ubuntu24.04
 
-ARG WHISPER_VERSION=2.4.0
+ARG WHISPER_VERSION=2.5.0
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
