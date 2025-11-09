@@ -1,6 +1,6 @@
 FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu24.04 AS builder
 
-ARG CTRANSLATE2_VERSION=4.6.0
+ARG CTRANSLATE2_VERSION=4.6.1
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
