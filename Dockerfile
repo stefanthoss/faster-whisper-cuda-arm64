@@ -1,6 +1,6 @@
 FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu24.04 AS builder
 
-ARG CTRANSLATE2_VERSION=4.6.0
+ARG CTRANSLATE2_VERSION=4.6.2
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -30,7 +30,7 @@ RUN cd CTranslate2/python \
 
 FROM nvidia/cuda:12.8.1-cudnn-runtime-ubuntu24.04
 
-ARG WHISPER_VERSION=2.5.0
+ARG WHISPER_VERSION=3.0.2
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
