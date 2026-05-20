@@ -6,6 +6,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         build-essential \
         cmake \
+        cuda-toolkit-12-8 \
         git \
         python3 \
         python3-dev \
