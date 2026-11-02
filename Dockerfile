@@ -1,7 +1,7 @@
 # Versions to bump for a release.
 ARG CUDA_VERSION=13.4.3
 ARG UBUNTU_VERSION=24.04
-ARG CTRANSLATE2_VERSION=4.8.4
+ARG CTRANSLATE2_VERSION=4.8.5
 ARG WYOMING_FASTER_WHISPER_VERSION=3.8.1
 # faster-whisper 1.2.1 calls av.open(metadata_errors=...), which av 19 removed.
 ARG AV_VERSION_SPEC="av>=11,<19"
