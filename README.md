@@ -21,7 +21,7 @@ The image is built on CUDA 13, which supports compute capability 7.5 and up: Tur
 
 **The Nvidia generations Maxwell, Pascal, Volta and Jetson Xavier are not supported since CUDA 13.**
 
-Most of the build time is CTranslate2 compiling CUDA kernels for every architecture in the table. When building for one machine, narrow it down with the `CUDA_ARCH_LIST` and `CUDA_NVCC_FLAGS` build arguments to cut compile time.
+Most of the build time is CTranslate2 compiling CUDA kernels for every architecture in the table. When building for one machine, narrow it down with the `CUDA_ARCH_LIST` build argument (a `;` separated list of CMake CUDA architectures, e.g. `80;86`) to cut compile time.
 
 ## Configuration
 
